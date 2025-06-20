@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nopalvaso - Vasos Personalizados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: url('mi-fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .pantalla {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: #ffffff;
+           
+    }
+    .pantalla-inicio {
+      display: flex;
+   }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 4rem;
+      margin-bottom: 20px;
+      color:#2bff58;
+      animation: flotar 2s infinite ease-in-out;
+      text-shadow: 3px 3px 6px #000;
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    button {
+      padding: 15px 30px;
+      background-color: #ce00ff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+    button:hover {
+      background-color: #e32bff;
+      transform: scale(1.1);
+    }
+    .pagina-catalogo {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      z-index: 1;
+     background: url('Fondo-catalo.jpg') no-repeat center center fixed;
+      background-size: cover;
+  }
+    .producto {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);      
+      width: 200px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .producto:hover {
+      transform: scale(1.05);
+    }
+    .producto img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 90%;
+      max-width: 400px;
+      color: #fff;
+    }
+    input, select, textarea {
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    input[type="file"] {
+      background-color: white;
+      color: black;
+    }
+    .pantalla-final {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    .volver {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pantalla de Inicio -->
+  <section class="pantalla pantalla-inicio" id="inicio">
+    <h1>Nopalvaso</h1>
+    <p>¡Empieza tu pedido!</p>
+    <button onclick="mostrarCatalogo()">Ver Catálogo</button>
+  </section>
+
+  <!-- Catálogo -->
+  <section class="pantalla pantalla-catalogo" id="catalogo">
+    <h1>Catálogo</h1>
+    <div class="catalogo">
+      <div class="producto" onclick="mostrarFormulario('Termo Animado')">
+        <img src="imag2.jpg" alt="Termo Animado" />
+        <p>Animaciones - $250</p>
+      </div>
+      <div class="producto" onclick="mostrarFormulario('Termo Temático')">
+        <img src="imag4.jpg" alt="Termo Temático" />
+        <p>Temáticas - $350</p>
+      </div>
+    </div>
+    <div class="volver" onclick="mostrarInicio()">Volver al inicio</div>
+  </section>
+
+  <!-- Formulario -->
+  <section class="pantalla pantalla-formulario" id="formulario">
+    <h1>Personaliza tu vaso</h1>
+    <form id="formPedido">
+      <input type="text" id="nombre" placeholder="Tu nombre" required />
+      <input type="text" id="colorTexto" placeholder="Color favorito o texto especial" required />
+      <textarea id="descripcion" placeholder="Descripción adicional (emoji, diseño, etc.)"></textarea>
+      <label for="imagenArchivo">Sube tu imagen (opcional):</label>
+      <input type="file" id="imagenArchivo" accept="image/*" />
+      <select id="pago" required>
+        <option value="">Método de pago</option>
+        <option value="Efectivo">Efectivo</option>
+        <option value="Transferencia">Transferencia</option>
+      </select>
+      <input type="text" id="entrega" placeholder="¿Domicilio o punto de encuentro?" required />
+      <button type="submit">Enviar por WhatsApp</button>
+    </form>
+    <div class="volver" onclick="mostrarCatalogo()">Volver al catálogo</div>
+  </section>
+
+  <!-- Pantalla Final -->
+  <section class="pantalla pantalla-final" id="final">
+    <h1>¡Gracias por tu pedido! 🎉</h1>
+    <p>Tu vaso será creado con amor 💖</p>
+    <p>¿Cómo calificarías tu experiencia?</p>
+    <select>
+      <option value="5">⭐️⭐️⭐️⭐️⭐️ Excelente</option>
+      <option value="4">⭐️⭐️⭐️⭐️ Muy buena</option>
+      <option value="3">⭐️⭐️⭐️ Regular</option>
+      <option value="2">⭐️⭐️ Mala</option>
+    </select>
+    <div class="volver" onclick="mostrarInicio()">Volver al inicio</div>
+  </section>
+
+<script>
+  let tipoProducto = '';
+
+  function mostrarInicio() {
+    ocultarTodas();
+    document.getElementById('inicio').style.display = 'flex';
+  }
+
+  function mostrarCatalogo() {
+    ocultarTodas();
+    document.getElementById('catalogo').style.display = 'flex';
+  }
+
+  function mostrarFormulario(producto) {
+    tipoProducto = producto;
+    ocultarTodas();
+    document.getElementById('formulario').style.display = 'flex';
+  }
+
+  function mostrarFinal() {
+    ocultarTodas();
+    document.getElementById('final').style.display = 'flex';
+  }
+
+  function ocultarTodas() {
+    ['inicio', 'catalogo', 'formulario', 'final'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+  }
+
+  const numeroWhatsapp = '+525575663960';
+
+  document.getElementById('formPedido').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value.trim();
+    const colorTexto = document.getElementById('colorTexto').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+    const pago = document.getElementById('pago').value;
+    const entrega = document.getElementById('entrega').value.trim();
+    const archivo = document.getElementById('imagenArchivo').files[0];
+
+    let textoImagen = archivo ? '✅ Imagen adjunta (revisar manualmente).' : '❌ No se adjuntó imagen.';
+
+    let mensaje = `*Pedido de vaso personalizado*\n\n`;
+    mensaje += `*Producto:* ${tipoProducto}\n`;
+    mensaje += `*Nombre:* ${nombre}\n`;
+    mensaje += `*Color o texto especial:* ${colorTexto}\n`;
+    mensaje += `*Descripción:* ${descripcion || 'Ninguna'}\n`;
+    mensaje += `*Pago:* ${pago}\n`;
+    mensaje += `*Entrega:* ${entrega}\n`;
+    mensaje += `${textoImagen}\n\n`;
+    mensaje += `Gracias por tu compra 🥤`;
+
+    const mensajeURL = encodeURIComponent(mensaje);
+    const url = `https://wa.me/${numeroWhatsapp}?text=${mensajeURL}`;
+    window.open(url, '_blank');
+    mostrarFinal();
+    this.reset();
+  });
+
+  mostrarInicio();
+</script>
+
+</body>
+</html>
